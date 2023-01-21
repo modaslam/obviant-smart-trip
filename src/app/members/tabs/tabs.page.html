@@ -1,0 +1,50 @@
+<ion-tabs>
+ 
+  <ion-tab-bar slot="bottom">
+ 
+    <ion-tab-button tab="dashboard">
+      <ion-icon name="card"></ion-icon>
+      <ion-label>Dashboard</ion-label>
+    </ion-tab-button>
+ 
+    <ion-tab-button tab="trip">
+      <ion-icon name="bicycle"></ion-icon>
+      <ion-label>Trip</ion-label>
+    </ion-tab-button>
+    
+    <ion-tab-button tab="notification" id="notification-button">
+      <ion-icon name="notifications-outline" id="notification-icon"></ion-icon>
+      <ion-badge *ngIf="notificationService.notificationCount > 0" color="danger">
+        {{ notificationService.notificationCount }}
+      </ion-badge>
+      <ion-label>Notification</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="explore">
+      <ion-icon name="map"></ion-icon>
+      <ion-label>Explore</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="trend">
+      <ion-icon name="pulse"></ion-icon>
+      <ion-label>Trending</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="people">
+      <ion-icon name="contacts"></ion-icon>
+      <ion-label>People</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="leaderboard">
+      <ion-icon name="list"></ion-icon>
+      <ion-label>Leaderboard</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="profile">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>Profile</ion-label>
+    </ion-tab-button>
+ 
+  </ion-tab-bar>
+ 
+</ion-tabs>

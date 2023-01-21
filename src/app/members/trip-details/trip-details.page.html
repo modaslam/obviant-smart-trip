@@ -1,0 +1,77 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Trip Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="tripDetailsForm">
+    <ion-item *ngIf="!navExtras.getRouteFlag()">
+      <ion-label position="stacked">Enter the name of your route</ion-label>
+      <ion-input formControlName="routeName" type="text"></ion-input>
+      <ion-button slot="end" (click)="addRoute()" [disabled]="!tripDetailsForm.valid">Start trip</ion-button>
+    </ion-item>
+    <ion-item lines="none" *ngIf="navExtras.getRouteFlag() && details">
+      <h3>{{ details.name }}</h3>
+    </ion-item>
+    <ion-list *ngIf="details">
+      <ion-item-divider></ion-item-divider>
+      <ion-item lines="none">
+        Total Distance: {{ details.distance}} km
+      </ion-item>
+      <ion-item lines="none" *ngIf="duration">
+        Total Duration: {{ duration }}
+      </ion-item>
+      <ion-item-divider></ion-item-divider>
+      <ion-list-header color="primary">Waypoints</ion-list-header>
+      <div *ngFor="let leg of details.legs; let i = index">
+        <ion-item lines="none" class="content-sizing">
+          <span class="left">{{details.waypoints[i]}}</span> to <span class="right">{{details.waypoints[i+1]}}</span>
+        </ion-item> 
+        <ion-item>
+          <ion-chip slot="end">
+            <ion-icon name="speedometer" color="primary"></ion-icon>
+            <ion-label text-wrap>{{leg.distance.text}}</ion-label>
+          </ion-chip>
+        
+          <ion-chip slot="end">
+            <ion-icon name="time" color="primary"></ion-icon>
+            <ion-label text-wrap>{{leg.duration.text}}</ion-label>
+          </ion-chip>
+        </ion-item>
+      </div>
+      <ion-item lines="none" *ngIf="navExtras.getRouteFlag()">
+        <ion-button slot="end" (click)="continue()">
+          Start trip
+        </ion-button>
+      </ion-item>
+        
+    </ion-list>
+      <!-- <p>Accordion list example - Best places to visit:</p>
+
+      <accordion-list *ngFor="let item of items; let index = index"
+                      [title]="item.name"
+                      textColor="#FFF"
+                      hasMargin="false"
+                      headerColor="#F53D3D"
+                      [expanded]="index === 0">
+        <img [src]="item.imageUrl">
+        <p text-wrap>{{item.description}}</p>
+      </accordion-list> -->
+      <!-- <timeline endIcon="call">
+        <timeline-item *ngFor="let leg of details.legs">
+          <timeline-time [leg]="leg"></timeline-time>
+          <ion-icon [name]="item.icon"></ion-icon>
+          <ion-icon [name]="details.icon"></ion-icon>
+          <ion-card>
+            <ion-card-header>
+              {{leg.start_address}}
+            </ion-card-header>
+            <ion-card-content>
+              Exercitation eu ullamco aliquip ea deserunt quis aliquip quis. Officia tempor nostrud incididunt elit velit sunt pariatur. Aliquip est labore aliquip nisi. Incididunt aliquip deserunt fugiat quis dolor commodo ad sint exercitation magna tempor. Excepteur aliquip dolore dolore consectetur excepteur non laborum dolore aliquip elit commodo tempor enim eu. Consectetur aute irure voluptate aliqua deserunt amet ut veniam aliqua eu elit occaecat eu culpa.
+            </ion-card-content>
+          </ion-card>
+        </timeline-item>
+      </timeline> -->
+  </form>
+</ion-content>

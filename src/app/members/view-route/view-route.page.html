@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View Route</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+        Cancel
+      </ion-button>
+      <ion-button (click)="start()">
+        <ion-icon name="checkmark"></ion-icon>
+        Start
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div style="height: 90%; width: 100%" id="trip_canvas" position="absolute"></div>
+  <ion-chip *ngIf="route">
+    <ion-icon name="pin" color="primary"></ion-icon>
+    <ion-label>{{ route.waypoints.length }}  Waypoints</ion-label>
+  </ion-chip>
+</ion-content>

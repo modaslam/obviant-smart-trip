@@ -1,0 +1,31 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Leaderboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-- Content -->
+<ion-content padding>
+  <ion-list *ngIf="moreUsers">
+    <ion-item *ngFor="let user of moreUsers">
+      <ion-avatar slot="start">
+        <img src="../../../assets/icon/favicon.png" *ngIf="!user.thumbImageUrl">
+        <img [src]="'http://7f46f27b.ngrok.io/' + user.thumbImageUrl" 
+                 *ngIf="user.thumbImageUrl">
+        <!-- <img [src]="'http://localhost:3000/' + user.thumbImageUrl" 
+                 *ngIf="user.thumbImageUrl"> -->
+      </ion-avatar>
+      <ion-label text-wrap>
+        <h2>{{ user.username }}</h2>
+        <p>{{ user.exp }} points</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreUsers($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-list *ngIf="!moreUsers">
+    <ion-item-divider class="center-align">No such leaderboard exists at the moment!</ion-item-divider>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,60 @@
+<ion-header no-border>
+  <ion-toolbar></ion-toolbar>
+</ion-header>
+
+<ion-content padding fullscreen="true">
+<ion-grid>
+	<ion-row justify-content-center>
+		<ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+			<div padding>
+				<form [formGroup]="loginForm">
+					<ion-item>
+						<ion-label position="floating">Username/ Email</ion-label>
+						<ion-input formControlName="username" type="text" name="username">
+						</ion-input>
+					</ion-item>
+
+					<div class="error-messages">
+						<ng-container *ngFor="let error of error_messages.username">
+							<div class="error-message" *ngIf="loginForm.get('username').hasError(error.type) && 
+						(loginForm.get('username').dirty || loginForm.get('username').touched)">
+							{{ error.message }}
+							</div>
+						</ng-container>
+					</div>
+
+					<ion-item>
+						<ion-label position="floating">Password</ion-label>
+						<ion-input formControlName="password" type="password" name="password">
+						</ion-input>
+					</ion-item>
+
+					<div class="error-messages">
+						<ng-container *ngFor="let error of error_messages.password">
+							<div class="error-message" *ngIf="loginForm.get('password').hasError(error.type) && 
+						(loginForm.get('password').dirty || loginForm.get('password').touched)">
+							{{ error.message }}
+							</div>
+						</ng-container>
+					</div>
+
+				</form>
+			</div>
+
+			<div>
+				<ion-button expand="block" (click)="login()" [disabled]="!loginForm.valid">Login</ion-button>
+			</div>
+			<div class="center">
+				<a href="#">Forgot Password</a>
+			</div>
+			<br/>
+			<div>
+				<ion-button expand="block" routerLink="/register" routerDirection="forward">
+					New     here? Signup
+				</ion-button>
+			</div>
+		</ion-col>
+	</ion-row>
+</ion-grid>
+  
+</ion-content>

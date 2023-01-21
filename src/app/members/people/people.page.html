@@ -1,0 +1,110 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>People</ion-title>
+    <ion-buttons slot="end" *ngIf="navExtras.getRouteFlag()">
+      <ion-button (click)="sendTripInvites()">
+        <ion-icon slot="icon-only" name="arrow-round-forward"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <!-- Friends list -->
+  <ion-list lines="none" *ngIf="friends.length < 1">
+    <ion-item-divider>
+      <ion-label>
+        Companion
+      </ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-label text-wrap>
+        You haven't made any friends yet!
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- List of Sliding Items for friends list if route hasn't been set-->
+  <ion-list *ngIf="friends.length > 0 && !navExtras.getRouteFlag()">
+    <ion-item-divider>
+      <ion-label>
+        Companion
+      </ion-label>
+    </ion-item-divider>
+      <ion-item *ngFor="let friend of friends">
+        <ion-avatar slot="start">
+          <img src="../../../assets/icon/favicon.png" *ngIf="!friend.thumbImageUrl">
+          <img [src]="'http://localhost:3000/' + friend.thumbImageUrl" 
+                   *ngIf="friend.thumbImageUrl">
+          <!-- <img [src]="'http://7f46f27b.ngrok.io/' + friend.thumbImageUrl" 
+                   *ngIf="friend.thumbImageUrl"> -->
+        </ion-avatar>
+        <ion-label text-wrap>
+          <h2>{{ friend.username }}</h2>
+        </ion-label>
+      </ion-item>
+  </ion-list>
+
+
+  <!-- Friends list if route has been set-->
+  <ion-list *ngIf="friends.length > 0 && navExtras.getRouteFlag()">
+    <ion-item-divider>
+      <ion-label>
+        Companion
+      </ion-label>
+    </ion-item-divider>
+    <ion-item-sliding *ngFor="let friend of friends">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="../../../assets/icon/favicon.png" *ngIf="!friend.thumbImageUrl">
+          <!-- <img [src]="'http://7f46f27b.ngrok.io/' + friend.thumbImageUrl" 
+                   *ngIf="friend.thumbImageUrl"> -->
+          <img [src]="'http://localhost:3000/' + friend.thumbImageUrl" 
+                   *ngIf="friend.thumbImageUrl">
+        </ion-avatar>
+        <ion-label text-wrap>
+          <h2>{{ friend.username }}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="inviteFriend(friend, $event.currentTarget)">Invite</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+
+  <!-- Neighbors list -->
+  <ion-list *ngIf="neighbors">
+    <ion-item-divider>
+      <ion-label>
+        Locality
+      </ion-label>
+    </ion-item-divider>
+    <ion-item-sliding *ngFor="let neighbor of neighbors">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="../../../assets/icon/favicon.png" *ngIf="!neighbor.thumbImageUrl">
+          <img [src]="'http://localhost:3000/' + neighbor.thumbImageUrl" 
+                   *ngIf="neighbor.thumbImageUrl">
+          <!-- <img [src]="'http://7f46f27b.ngrok.io/' + neighbor.thumbImageUrl" 
+                   *ngIf="neighbor.thumbImageUrl"> -->
+        </ion-avatar>
+        <ion-label text-wrap>
+          <!-- <h2>{{ neighbor.firstname }} {{ neighbor.middlename }} {{ neighbor.lastname }}</h2> -->
+          <h2>{{ neighbor.username }}</h2>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="inviteNeighbor(neighbor, $event.currentTarget)">Invite</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list *ngIf="!neighbors">
+    <ion-item>
+      <ion-skeleton-text animated style="width: 30%; height:30px;"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+    </ion-item>
+  </ion-list>
+</ion-content>

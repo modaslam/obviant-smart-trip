@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Final Statistics</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="user && route">
+    <ion-list lines="inset">
+      <ion-item>
+        <ion-label>
+          <h4>{{ user.username }}</h4>
+        </ion-label>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>
+          Route Info
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label>Name: </ion-label>
+          {{ route.name }}
+      </ion-item>
+      <ion-item>
+          <ion-label>Distance: </ion-label>
+          <p>
+            {{ route.distance.toFixed() }} km
+          </p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Your Rating: </ion-label>
+        <rating [rate]="newRouteRate"
+          readonly="false" 
+          size="default" 
+          (rateChange)="onRateChange($event)">
+        </rating>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label>
+          Your Metrics
+        </ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label>Distance Travelled: </ion-label>
+        <p>
+          {{ totalDistance }} km
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Average Speed: </ion-label>
+        <p>
+          {{ avgSpeed }} km/hr
+        </p>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="full" fill="outline" (click)="finish()">Start Trip</ion-button>
+  </div>
+</ion-content>

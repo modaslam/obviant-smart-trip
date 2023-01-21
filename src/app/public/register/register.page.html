@@ -1,0 +1,116 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login" routerDirection="backward"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <form [formGroup]="registerForm">
+          <div padding>
+            <ion-list>
+
+              <ion-item>
+                <ion-label position="stacked">Username</ion-label>
+                <ion-input type="text" name="username" formControlName="username"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Email</ion-label>
+                <ion-input type="email" name="email" formControlName="email"></ion-input>
+              </ion-item>
+                
+              <ion-item>
+                <ion-label position="stacked">Password</ion-label>
+                <ion-input type="password" name="password" formControlName="password"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Confirm Password</ion-label>
+                <ion-input type="password" name="confirm_password" formControlName="confirmPassword"></ion-input>
+              </ion-item>
+
+              <ion-item-divider>
+              </ion-item-divider>
+
+              <ion-item>
+                <ion-label position="stacked">First Name</ion-label>
+                <ion-input type="text" name="fname" formControlName="firstName" autocapitalize clearInput></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Middle Name</ion-label>
+                <ion-input type="text" name="mname" formControlName="middleName" autocapitalize clearInput></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Last Name</ion-label>
+                <ion-input type="text" name="lname" formControlName="lastName" clearInput></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Date of Birth</ion-label>
+                <ion-datetime display-format="DD MMM, YYYY" name="date" min="1920" max="2009"
+                  formControlName="date" placeholder="DD/MMM/YYYY" 
+                  monthShortNames="JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC"></ion-datetime>
+              </ion-item>
+
+              <ion-item-divider>
+              </ion-item-divider>
+
+              <ion-item>
+                <ion-label>Gender</ion-label>
+                <ion-select placeholder="Select One" formControlName="gender" text-wrap>
+                  <ion-select-option value="Female">Female</ion-select-option>
+                  <ion-select-option value="Male">Male</ion-select-option>
+                </ion-select>
+              </ion-item>    
+            </ion-list>
+
+            <ion-item-divider>
+            </ion-item-divider>
+
+            <ion-item *ngIf="countries">
+              <ion-label>Country</ion-label>
+              <ion-select placeholder="Select Country" formControlName="country" (ionChange)="updateRegions()" text-wrap>
+                <ion-select-option *ngFor="let country of countries" 
+                                   [value]="country" 
+                                   text-wrap
+                                   >
+                  {{ country.name }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item *ngIf="regions.length > 0">
+              <ion-label>Region</ion-label>
+              <ion-select placeholder="Select Region" formControlName="region" (ionChange)="updateCities()" text-wrap>
+                <ion-select-option *ngFor="let region of regions" 
+                                   [value]="region.region"
+                                   text-wrap
+                                   >
+                  {{ region.region }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item *ngIf="cities.length > 0">
+                <ion-label>City</ion-label>
+                <ion-select placeholder="Select City" formControlName="city" text-wrap>
+                  <ion-select-option *ngFor="let city of cities" [value]="city.city" text-wrap>
+                    {{ city.city }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+          </div>
+          <div padding>
+            <ion-button expand="block" (click)="register()" [disabled]="!registerForm.valid">Register</ion-button>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

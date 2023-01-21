@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lobby</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancelTrip()">
+        <ion-icon slot="icon-only" name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header *ngIf="route && trip">
+      <ion-card-title>{{ route.name }}</ion-card-title>
+      <ion-card-subtitle>
+        {{ readyUsersCount }} out of {{ totalUsersCount }} ready!
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-list *ngIf="user && readyUsers && notReadyUsers">
+      <ion-item>
+        <ion-label>{{ user.firstname }} {{ user.middlename }} {{ user.lastname }}</ion-label>
+        <ion-icon name="eye" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item *ngFor="let friend of readyUsers">
+        <ion-label>{{ friend.firstname }} {{ friend.middlename }} {{ friend.lastname }}</ion-label>
+        <ion-icon name="checkmark" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item *ngFor="let friend of notReadyUsers">
+        <ion-label>{{ friend.firstname }} {{ friend.middlename }} {{ friend.lastname }}</ion-label>
+        <ion-icon name="close" slot="end"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <!-- <ion-button (click)="logout()">Test button</ion-button> -->
+</ion-content>
+  
+<ion-footer *ngIf="!readyFlag">
+  <!-- Colorize Progressbar -->
+  <ion-progress-bar color="tertiary" [value]="userProgress"></ion-progress-bar>
+
+  <ion-button *ngIf="creator" expand="full" fill="outline" (click)="startTrip()">Start Trip</ion-button>
+  <ion-button *ngIf="!creator && trip.status=='ONGOING'" expand="full" fill="outline" (click)="continue()">
+    Continue Trip
+  </ion-button>
+</ion-footer>

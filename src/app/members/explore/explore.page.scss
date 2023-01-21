@@ -1,0 +1,31 @@
+ion-fab {
+    margin-top: 40px;
+}
+
+ion-card {
+    margin-bottom: 40px;
+}
+
+.duration {
+    color: var(--ion-color-tertiary);
+    font-size: 12px;
+}
+
+.distance {
+    font-size: 14px;
+    margin-right: 0px;
+}
+
+.trip-count {
+  color: white;
+}
+
+rating {
+    ion-icon {
+      color: gray;
+  
+      &.filled {
+        color: #ffb400;
+      }
+    }
+  }

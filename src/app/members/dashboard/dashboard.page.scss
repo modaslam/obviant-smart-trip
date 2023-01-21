@@ -1,0 +1,19 @@
+.welcome-card ion-img {
+    max-height: 35vh;
+    overflow: hidden;
+}
+
+
+//To remove button styling defined in variable.css
+ion-toolbar ion-button {
+  --background: transparent;
+}
+
+ion-toolbar ion-button:active {
+  --border-width: 0px; 
+  --color-activated: #f9f9f9; 
+  --background-activated: transparent;
+  --ripple-color: none;
+}
+
+

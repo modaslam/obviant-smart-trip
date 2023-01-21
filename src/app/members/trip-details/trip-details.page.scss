@@ -1,0 +1,29 @@
+ion-item-divider {
+    --ion-item-border-color: #f9f9f9;
+    --background: transparent;
+}
+
+ion-chip {
+    margin-top: 10px;
+    width: 500px;
+}
+
+span {
+    color: var(--ion-color-primary);
+}
+
+span.right {
+    margin-left: 12px;
+}
+
+span.left {
+    margin-right: 12px;
+}
+
+.button-items {
+    text-align: right;
+}
+
+.content-sizing {
+    font-size: 0.7em;
+}

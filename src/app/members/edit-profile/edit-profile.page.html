@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Edit Profile</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+          Cancel
+        </ion-button>
+        <ion-button (click)="save()">
+          <ion-icon name="checkmark"></ion-icon>
+          Save
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+  
+<ion-content padding>
+  <form [formGroup]="profileForm">
+    <div padding>
+      <ion-list>
+        <ion-card>
+          <div align="center" *ngIf="userDetails">
+            <ion-avatar text-center (click)="presentActionSheet()">
+              <img src="../../../assets/icon/favicon.png" *ngIf="!userDetails.thumbImageUrl">
+              <img [src]="'http://7f46f27b.ngrok.io/' + userDetails.thumbImageUrl" 
+                   *ngIf="userDetails.thumbImageUrl">
+              <!-- <img [src]="'http://localhost:3000/' + userDetails.thumbImageUrl" 
+                   *ngIf="userDetails.thumbImageUrl"> -->
+            </ion-avatar>
+          </div>
+        </ion-card>
+        
+        <ion-item>
+          <ion-label position="stacked">Username</ion-label>
+          <ion-input type="text" name="username" formControlName="username" clearInput></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">First Name</ion-label>
+          <ion-input type="text" name="fname" formControlName="firstName" autocapitalize clearInput></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="stacked">Middle Name</ion-label>
+          <ion-input type="text" name="mname" formControlName="middleName" autocapitalize clearInput></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="stacked">Last Name</ion-label>
+          <ion-input type="text" name="lname" formControlName="lastName" clearInput></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input type="email" name="email" formControlName="email" clearInput></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Date of Birth</ion-label>
+          <ion-datetime display-format="DD MMM, YYYY" name="date" min="1920" max="2019"
+            formControlName="date" placeholder="DD/MMM/YYYY" 
+            monthShortNames="JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC"></ion-datetime>
+        </ion-item>
+      </ion-list>
+    </div>
+  </form>
+</ion-content>

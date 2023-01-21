@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/members/tabs/trip" routerDirection="backward"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Fuel Planner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="stacked">Mileage of vehicle (in km/L)</ion-label>
+    <ion-input type="number" name="mileage" [(ngModel)]="mileage" ></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Approx. fuel in tank (in L)</ion-label>
+    <ion-input type="number" name="totalFuel" [(ngModel)]="totalFuel" ></ion-input>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-button slot="end" (click)="calculate()" [disabled]="!mileage&&!totalFuel">
+      Calculate
+    </ion-button>
+  </ion-item>
+  <ion-item-divider></ion-item-divider>
+  <ion-item lines="none" *ngIf="distanceCovered > 0">Distance that can be covered: {{ distanceCovered }} km</ion-item>
+
+  <ion-item lines="none" *ngIf="distanceCovered > 0">
+    <ion-button expand="block" routerLink="/members/tabs/people" routerDirection="forward" (click)="store()">
+      Continue
+    </ion-button>
+  </ion-item>
+</ion-content>

@@ -1,0 +1,42 @@
+$white-color: #fff;
+$height80: 80%;
+
+ion-grid {
+    width:100%;
+    height: $height80;
+}
+
+ion-row {
+    height: $height80;
+}
+
+ion-button {
+    font-weight: 300;
+}
+
+a {
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+//  Make toolbar transparent
+ion-toolbar {
+    --background: transparent;   
+    --ion-color-base: transparent !important;   
+}
+
+.center {
+    text-align: center;
+}
+
+.error-messages {
+    font-size: 0.7em;
+    color: red;
+    text-align: center;
+}
+
+@media (min-width: 240px) and (max-width: 768px) {
+    ion-col {
+        border: none;
+    }
+}

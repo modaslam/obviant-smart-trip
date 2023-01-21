@@ -1,0 +1,31 @@
+ion-list {
+    margin: 0 !important;
+}
+
+ion-chip {
+    margin-top: 10px;
+}
+
+ion-fab {
+    margin-top: 25vh;
+}
+
+// For map to be visible on android
+ion-content {
+    --background: none;
+}
+
+.button-items {
+    text-align: right;
+}
+
+.side-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+@media (min-width: 240px) and (max-width: 768px) {
+    .button-items {
+        text-align: right;
+    }
+}

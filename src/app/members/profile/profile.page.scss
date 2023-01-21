@@ -1,0 +1,34 @@
+//To remove button styling defined in variable.css
+ion-toolbar ion-button {
+    --background: transparent;
+}
+
+/* Custom Skeleton Line Height and Margin */
+.custom-skeleton ion-skeleton-text {
+    line-height: 13px;
+}
+  
+.custom-skeleton ion-skeleton-text:last-child {
+    margin-bottom: 5px;
+}
+
+.edit-button {
+    --background: transparent !important;
+    --color: #02aab0;
+    --border-radius: 0px;
+    --ripple-color: #f9f9f9;
+    font-size: 17px;
+}
+  
+.edit-button:active {
+    // --border-color: rgba(255,113,43); 
+    --border-width: 0px;
+}
+
+ion-toolbar ion-button:active {
+    --border-width: 0px; 
+    --color-activated: #f9f9f9; 
+    --background-activated: none;
+    --ripple-color: none;
+}
+

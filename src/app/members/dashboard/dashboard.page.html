@@ -1,0 +1,24 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-button slot="end" (click)="presentPopover($event)">
+        <ion-icon slot="icon-only" name="md-more"></ion-icon>
+    </ion-button>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card class="welcome-card">
+    <ion-img src="/assets/trip.jpg"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>Hello, {{ firstname  }} {{middlename}} {{lastname}}</ion-card-subtitle>
+      <ion-card-title>Ready for your trip?</ion-card-title>
+    </ion-card-header>
+
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label text-wrap>Set your destination!</ion-label>
+      <ion-button fill="solid" slot="end">View</ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>

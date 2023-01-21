@@ -1,0 +1,7 @@
+{
+  "name": "smart-trip",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

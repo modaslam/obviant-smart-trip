@@ -1,0 +1,104 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Explore</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding> 
+  <ion-list *ngIf="moreRoutes">
+    <ion-card *ngFor="let route of moreRoutes; let i = index">
+      <ion-item>
+        <h3>{{ route.name }}</h3>
+      </ion-item>
+      <img src="../../../assets/images.jpg">
+      <ion-fab horizontal="end" vertical="top">
+        <ion-fab-button color="tertiary" class="trip-count">
+          Trips: {{ route.tripCount }}
+        </ion-fab-button>
+      </ion-fab>
+    
+      <ion-item>
+        <ion-icon name="man" slot="start" size="large"></ion-icon>
+        <ion-label text-wrap>
+          <h2>{{ route.waypoints[0] }}</h2>
+          <p>Source</p>
+        </ion-label>
+      </ion-item>
+    
+      <ion-item>
+        <ion-icon name="walk" slot="start" size="large"></ion-icon>
+        <ion-label text-wrap>
+          <h2>{{ route.waypoints[route.waypoints.length - 1] }}</h2>
+          <p>Destination</p>
+        </ion-label>
+      </ion-item>
+    
+      <ion-item>
+        <span slot="start" class="duration">{{ durations[i] }}</span>
+        <span slot="start" *ngIf="route.distance" class="distance">{{ route.distance.toFixed() }} km</span>
+        <ion-button fill="clear" slot="end" (click)="viewRoute(route)">
+          <ion-icon name="navigate" slot="start"></ion-icon>
+          View
+        </ion-button>
+      </ion-item>
+      <ion-item>
+        <!-- Rating component -->
+        <rating [rate]="route.rating"
+          readonly="true" 
+          size="default" 
+          (rateChange)="onRateChange($event)">
+        </rating>
+      </ion-item>
+    </ion-card>
+
+  </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="loadMoreRoutes($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-list *ngIf="!moreRoutes">
+    <ion-card>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </ion-item>
+      <ion-skeleton-text animated style="width: 100%; height: 60px"></ion-skeleton-text>
+    
+      <ion-item>
+        <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+      </ion-item>
+    
+      <ion-item>
+        <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+      </ion-item>
+    
+      <ion-item>
+        <span slot="start"><ion-skeleton-text animated style="width: 20%"></ion-skeleton-text></span>
+        <span slot="start"><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></span>
+        <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+      </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </ion-item>
+      <ion-skeleton-text animated style="width: 100%; height: 60px"></ion-skeleton-text>
+    
+      <ion-item>
+        <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+      </ion-item>
+    
+      <ion-item>
+        <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+      </ion-item>
+    
+      <ion-item>
+        <span slot="start"><ion-skeleton-text animated style="width: 20%"></ion-skeleton-text></span>
+        <span slot="start"><ion-skeleton-text animated style="width: 100%"></ion-skeleton-text></span>
+        <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+      </ion-item>
+    </ion-card>
+
+  </ion-list>
+</ion-content>

@@ -1,0 +1,51 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>Start Trip</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar 
+    animated showCancelButton placeholder="Search" 
+    [(ngModel)]="query" 
+    (ionChange)="searchPlace()">
+  </ion-searchbar>
+  <ion-list [hidden]="places.length == 0">
+    <ion-item *ngFor="let place of places" (touchstart)="selectPlace(place)">{{place.description}}</ion-item>
+  </ion-list>
+
+  <ion-fab *ngIf="flag" vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" routerDirection="root" (click)="continue()">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div style="height: 70%; width: 100%" id="map_canvas" position="absolute"></div>
+
+  <div class="button-items" padding>
+    <ion-chip>
+      <ion-icon name="pin" color="primary"></ion-icon>
+      <ion-label>{{totalWaypoints}}  Waypoints</ion-label>
+    </ion-chip>
+
+    <ion-button fill="solid" size="small" (click)="clearMap()">
+      Clear
+    </ion-button>
+
+    <!-- <ion-button fill="solid" size="small" (click)="addWayPoints()" [disabled]="!coordSet">
+      Add Waypoints
+    </ion-button> -->
+
+    <ion-button fill="solid" size="small" (click)="findDirection()" [disabled]="!coordSet">
+      Find Route
+    </ion-button>
+  </div>
+
+  <div class="side-padding" *ngIf="selectedRouteLength">
+    <ion-item>
+      <ion-label>
+        Total Distance: {{ selectedRouteLength }} km
+      </ion-label>
+    </ion-item>
+  </div>
+</ion-content>
